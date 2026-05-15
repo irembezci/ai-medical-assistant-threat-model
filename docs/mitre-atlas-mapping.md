@@ -2,9 +2,9 @@
 
 ## Overview
 
-After mapping the identified threats to the OWASP Top 10 for LLM Applications, the next step is to align the findings with the MITRE ATLAS framework developed by :contentReference[oaicite:0]{index=0} and :contentReference[oaicite:1]{index=1}.
+After mapping the identified threats to the OWASP Top 10 for LLM Applications, the next step is to align the findings with the [MITRE ATLAS](https://atlas.mitre.org/) framework developed by [MITRE Corporation](https://www.mitre.org/).
 
-MITRE ATLAS is a knowledge base of tactics and techniques used by adversaries to attack artificial intelligence systems. It extends the logic of adversary emulation to machine learning and LLM-enabled applications.
+MITRE ATLAS (Adversarial Threat Landscape for Artificial-Intelligence Systems) is a knowledge base of tactics and techniques used by adversaries to attack artificial intelligence systems. It extends the logic of adversary emulation to machine learning and LLM-enabled applications.
 
 By mapping threats to MITRE ATLAS, this assessment connects architectural risks to realistic attacker behavior.
 
