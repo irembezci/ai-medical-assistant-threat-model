@@ -4,7 +4,7 @@
 
 Once the critical assets have been identified, the next step is to determine who might attempt to compromise them.
 
-The AI Medical Assistant operates in a high-risk healthcare environment and processes sensitive Personal Health Information (PHI). As a result, the system may be targeted by a diverse range of adversaries, including opportunistic attackers, malicious insiders, sophisticated AI-focused adversaries, and healthcare-targeting advanced persistent threat (APT) groups.
+The AI Medical Assistant operates in a high-risk healthcare environment and processes sensitive Personal Health Information (PHI). As a result, the system may be targeted by a diverse range of adversaries, including opportunistic attackers, malicious insiders, sophisticated AI-focused adversaries and healthcare-targeting advanced persistent threat (APT) groups.
 
 Understanding these threat actors is essential because their capabilities, motivations, and attack methods directly influence the types of risks that must be addressed.
 
@@ -14,7 +14,7 @@ Understanding these threat actors is essential because their capabilities, motiv
 
 The purpose of this section is to answer the following question:
 
-> Who is most likely to attack the system, and what are they trying to achieve?
+> Who is most likely to attack the system and what are they trying to achieve?
 
 By identifying likely adversaries, the analysis can determine:
 
