@@ -1,54 +1,145 @@
 # AI Medical Assistant Threat Modeling Case Study
 
-This project presents a comprehensive security assessment of a fictional AI-powered medical assistant.
+## Introduction
 
-The system is designed as a high-risk healthcare application that processes sensitive Personal Health Information (PHI) and uses a Large Language Model (LLM) with Retrieval-Augmented Generation (RAG) to provide preliminary medical guidance.
+Large Language Models are increasingly being integrated into healthcare applications to provide symptom analysis, patient guidance, and clinical decision support. While these systems offer significant benefits, they also introduce new security and safety challenges. Sensitive medical information, third-party model providers, retrieval pipelines, and AI-specific attack techniques create a broad and complex attack surface.
 
-Patients can submit symptoms and medical questions, receive AI-generated health recommendations, and optionally share generated summaries with authorized doctors through a secure dashboard.
+In this project, I perform a comprehensive threat modeling and risk assessment of a fictional AI-powered Medical Assistant. The system allows patients to submit symptoms, retrieves trusted medical references using Retrieval-Augmented Generation (RAG), and generates preliminary medical guidance through a Large Language Model (LLM). Patients may also choose to share AI-generated summaries with authorized doctors.
 
-This repository does not contain a working application. Instead, it models the system architecture, data flows, trust boundaries, and attack surfaces, and applies industry-standard threat modeling and risk assessment methodologies.
+Rather than building a working application, this repository models the system architecture, data flows, trust boundaries, and potential attack paths. The analysis applies STRIDE, OWASP Top 10 for LLM Applications, and MITRE ATLAS to identify and prioritize the most significant risks.
 
-## Methodologies Used
+The goal of this project is to answer a simple but critical question:
 
-- STRIDE
-- OWASP Top 10 for LLM Applications
-- MITRE ATLAS
-- Qualitative Risk Assessment (Likelihood × Impact)
+> How can we systematically assess and secure a high-risk AI healthcare application before it is deployed?
 
-## Project Objective
+---
 
-The objective of this project is to identify security risks specific to AI-enabled healthcare systems and propose practical mitigations to improve:
+## Methodology
 
-- Confidentiality
-- Integrity
-- Availability
-- Safety
-- Auditability
+The assessment follows a structured methodology.
 
-## Project Deliverables
+First, the system is modeled from multiple perspectives using architecture and design diagrams. Once the system boundaries and workflows are clearly defined, critical assets are identified and potential threat actors are analyzed.
 
-This repository currently includes the following deliverables:
+Next, realistic abuse cases are developed to describe how the application may be intentionally misused. These abuse cases form the basis for a STRIDE-based threat model.
 
-### Architecture and Design Artifacts
+The resulting threats are then mapped to the OWASP Top 10 for LLM Applications and MITRE ATLAS to align the findings with recognized AI security frameworks.
 
-- System Architecture Diagram
-- Data Flow Diagram (DFD)
-- Trust Boundary Diagram
-- Sequence Diagram
+Finally, each threat is assessed using likelihood and impact, and practical mitigation strategies are proposed.
 
-### Threat Modeling Documentation
+---
 
-- Asset Inventory
-- Threat Actors
-- Security Assumptions
-- Abuse Cases
-- STRIDE Threat Model
+## Architecture and Design Artifacts
 
-### Planned Deliverables
+Understanding how the system works is the foundation of any effective threat model. To build a complete picture of the AI Medical Assistant, I created four complementary diagrams.
 
-- OWASP Top 10 for LLM Applications Mapping
-- MITRE ATLAS Mapping
-- Risk Assessment
-- Security Controls and Mitigations
-- Executive Summary
-- References
+### System Architecture Diagram
+
+![System Architecture Diagram](diagrams/system-architecture.png)
+
+This diagram provides a high-level view of the system and identifies the core components involved in patient interactions, AI processing, data storage, and monitoring.
+
+### Data Flow Diagram (DFD)
+
+![Data Flow Diagram](diagrams/data-flow-diagram.png)
+
+This diagram traces the movement of sensitive information throughout the system, from symptom submission to response generation and audit logging.
+
+### Trust Boundary Diagram
+
+![Trust Boundary Diagram](diagrams/trust-boundary-diagram.png)
+
+This diagram highlights where trust levels change and where sensitive data crosses security boundaries, including interactions with the external LLM provider.
+
+### Sequence Diagram
+
+![Sequence Diagram](diagrams/symptom-analysis-sequence.png)
+
+This diagram shows the chronological processing of a patient request, illustrating how authentication, retrieval, inference, validation, and logging occur over time.
+
+---
+
+## Asset Inventory
+
+The first step in the analytical phase is identifying what must be protected. In this system, the most critical assets include Personal Health Information (PHI), prompts, model outputs, API keys, and audit logs.
+
+<!-- Asset Inventory content -->
+
+---
+
+## Threat Actors
+
+After identifying the assets, I defined the adversaries most likely to target the system, including malicious patients, external attackers, insider threats, supply chain adversaries, and healthcare-focused APT groups.
+
+<!-- Threat Actors content -->
+
+---
+
+## Security Assumptions
+
+Every threat model depends on a set of assumptions regarding authentication, authorization, encryption, logging, and third-party model usage.
+
+<!-- Security Assumptions content -->
+
+---
+
+## Abuse Cases
+
+With the system context established, I developed realistic misuse scenarios such as prompt injection, knowledge base poisoning, sensitive data exfiltration, and unsafe medical output generation.
+
+<!-- Abuse Cases content -->
+
+---
+
+## STRIDE Threat Model
+
+Using the STRIDE methodology, I analyzed each major component to identify threats affecting confidentiality, integrity, availability, accountability, and privilege boundaries.
+
+<!-- STRIDE Threat Model content -->
+
+---
+
+## OWASP Top 10 for LLM Applications Mapping
+
+The identified threats are mapped to OWASP categories to align the findings with current best practices in LLM security.
+
+<!-- OWASP Mapping -->
+
+---
+
+## MITRE ATLAS Mapping
+
+The threats are also mapped to MITRE ATLAS to contextualize them within adversarial tactics and techniques targeting AI systems.
+
+<!-- MITRE ATLAS Mapping -->
+
+---
+
+## Risk Assessment
+
+Each threat is evaluated based on likelihood and impact to prioritize remediation efforts.
+
+<!-- Risk Assessment -->
+
+---
+
+## Security Controls and Mitigations
+
+For every high-priority risk, I propose practical technical and procedural controls.
+
+<!-- Mitigations -->
+
+---
+
+## Executive Summary
+
+The final section summarizes the most critical findings and recommended security improvements.
+
+<!-- Executive Summary -->
+
+---
+
+## References
+
+This section includes the standards and frameworks used throughout the assessment.
+
+<!-- References -->
