@@ -2,11 +2,11 @@
 
 ## Introduction
 
-Large Language Models are increasingly being integrated into healthcare applications to provide symptom analysis, patient guidance, and clinical decision support. While these systems offer significant benefits, they also introduce new security and safety challenges. Sensitive medical information, third-party model providers, retrieval pipelines, and AI-specific attack techniques create a broad and complex attack surface.
+Large Language Models are increasingly being integrated into healthcare applications to provide symptom analysis, patient guidance, and clinical decision support. While these systems offer significant benefits, they also introduce new security and safety challenges. Sensitive medical information, third-party model providers, retrieval pipelines and AI-specific attack techniques create a broad and complex attack surface.
 
-In this project, I perform a comprehensive threat modeling and risk assessment of a fictional AI-powered Medical Assistant. The system allows patients to submit symptoms, retrieves trusted medical references using Retrieval-Augmented Generation (RAG), and generates preliminary medical guidance through a Large Language Model (LLM). Patients may also choose to share AI-generated summaries with authorized doctors.
+In this project, I perform a comprehensive threat modeling and risk assessment of a fictional AI-powered Medical Assistant. The system allows patients to submit symptoms, retrieves trusted medical references using Retrieval-Augmented Generation (RAG) and generates preliminary medical guidance through a Large Language Model (LLM). Patients may also choose to share AI-generated summaries with authorized doctors.
 
-Rather than building a working application, this repository models the system architecture, data flows, trust boundaries, and potential attack paths. The analysis applies STRIDE, OWASP Top 10 for LLM Applications, and MITRE ATLAS to identify and prioritize the most significant risks.
+Rather than building a working application, this repository models the system architecture, data flows, trust boundaries and potential attack paths. The analysis applies STRIDE, OWASP Top 10 for LLM Applications and MITRE ATLAS to identify and prioritize the most significant risks.
 
 The goal of this project is to answer a simple but critical question:
 
