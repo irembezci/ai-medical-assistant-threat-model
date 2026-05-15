@@ -2,7 +2,7 @@
 
 ## Overview
 
-After identifying threats using the STRIDE methodology, the next step is to map those findings to the OWASP Top 10 for LLM Applications published by the :contentReference[oaicite:0]{index=0}.
+After identifying threats using the STRIDE methodology, the next step is to map those findings to the [OWASP Top 10 for LLM Applications](https://owasp.org/www-project-top-10-for-large-language-model-applications/), published by the [OWASP Foundation](https://owasp.org/).
 
 This framework provides a structured view of the most significant risks affecting applications that use Large Language Models (LLMs). By aligning the identified threats with these categories, the assessment demonstrates that the AI Medical Assistant is evaluated against current industry best practices in AI and LLM security.
 
@@ -27,16 +27,16 @@ This mapping helps:
 
 | OWASP Category | Relevant Threats | Applicability to the AI Medical Assistant |
 |------|------|------|
-| LLM01: Prompt Injection | Prompt Injection, Indirect Prompt Injection | Malicious users or poisoned documents may override system instructions. |
-| LLM02: Insecure Output Handling | Unsafe Output Generation, Guardrail Bypass | Model responses may contain harmful or sensitive content. |
+| LLM01: Prompt Injection | Prompt Injection and Indirect Prompt Injection | Malicious users or poisoned documents may override system instructions. |
+| LLM02: Insecure Output Handling | Unsafe Output Generation and Guardrail Bypass | Model responses may contain harmful or sensitive content. |
 | LLM03: Training Data Poisoning | Medical Knowledge Base Poisoning | Retrieved medical references may be manipulated. |
-| LLM04: Model Denial of Service | Model Denial of Service, Excessive Token Consumption | Adversarial prompts may exhaust computational resources. |
-| LLM05: Supply Chain Vulnerabilities | Supply Chain Adversary, Compromised Dependencies | Libraries, models or providers may be compromised. |
-| LLM06: Sensitive Information Disclosure | PHI Exposure, Prompt Leakage, API Key Exposure | Sensitive data may be disclosed to users or third parties. |
-| LLM07: Insecure Plugin Design | Excessive Agency, Unauthorized Tool Access | Tool invocation may perform unauthorized actions. |
-| LLM08: Excessive Agency | Prompt Injection, Privilege Escalation | The model may gain access beyond intended permissions. |
-| LLM09: Overreliance | Unsafe Output Generation, Misinformation | Users may trust inaccurate medical guidance. |
-| LLM10: Model Theft | API Abuse, Unauthorized Model Access | Attackers may misuse provider access or extract model behavior. |
+| LLM04: Model Denial of Service | Model Denial of Service and Excessive Token Consumption | Adversarial prompts may exhaust computational resources. |
+| LLM05: Supply Chain Vulnerabilities | Supply Chain Adversary and Compromised Dependencies | Libraries, models and providers may be compromised. |
+| LLM06: Sensitive Information Disclosure | PHI Exposure, Prompt Leakage and API Key Exposure | Sensitive data may be disclosed to users or third parties. |
+| LLM07: Insecure Plugin Design | Excessive Agency and Unauthorized Tool Access | Tool invocation may perform unauthorized actions. |
+| LLM08: Excessive Agency | Prompt Injection and Privilege Escalation | The model may gain access beyond intended permissions. |
+| LLM09: Overreliance | Unsafe Output Generation and Misinformation | Users may trust inaccurate medical guidance. |
+| LLM10: Model Theft | API Abuse and Unauthorized Model Access | Attackers may misuse provider access or extract model behavior. |
 
 ---
 
