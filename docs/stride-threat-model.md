@@ -4,7 +4,7 @@
 
 After defining the system architecture, critical assets, threat actors, security assumptions and realistic abuse cases, the next step is to systematically identify threats affecting each major component of the AI Medical Assistant.
 
-For this purpose, the assessment uses the STRIDE methodology developed by :contentReference[oaicite:0]{index=0}.
+For this purpose, the assessment uses the [STRIDE](https://learn.microsoft.com/en-us/azure/security/develop/threat-modeling-tool-threats) methodology developed by [Microsoft](https://www.microsoft.com/).
 
 STRIDE categorizes threats into six groups:
 
@@ -38,8 +38,8 @@ This analysis helps:
 
 | Category | Description |
 |------|------|
-| Spoofing | Pretending to be another user, service, or system component. |
-| Tampering | Unauthorized modification of data, prompts, configurations, or code. |
+| Spoofing | Pretending to be another user, service or system component. |
+| Tampering | Unauthorized modification of data, prompts, configurations or code. |
 | Repudiation | Denial of actions due to insufficient logging or accountability. |
 | Information Disclosure | Unauthorized exposure of sensitive information. |
 | Denial of Service | Disruption of system availability. |
