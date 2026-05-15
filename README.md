@@ -24,3 +24,31 @@ The objective of this project is to identify security risks specific to AI-enabl
 - Availability
 - Safety
 - Auditability
+
+## Project Deliverables
+
+This repository currently includes the following deliverables:
+
+### Architecture and Design Artifacts
+
+- System Architecture Diagram
+- Data Flow Diagram (DFD)
+- Trust Boundary Diagram
+- Sequence Diagram
+
+### Threat Modeling Documentation
+
+- Asset Inventory
+- Threat Actors
+- Security Assumptions
+- Abuse Cases
+- STRIDE Threat Model
+
+### Planned Deliverables
+
+- OWASP Top 10 for LLM Applications Mapping
+- MITRE ATLAS Mapping
+- Risk Assessment
+- Security Controls and Mitigations
+- Executive Summary
+- References
