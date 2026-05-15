@@ -2,28 +2,28 @@
 
 ## Introduction
 
-Artificial Intelligence is rapidly transforming healthcare. Applications powered by Large Language Models (LLMs) can analyze patient symptoms, retrieve trusted medical references and generate preliminary guidance in seconds.
+Artificial Intelligence is rapidly transforming healthcare. Applications powered by Large Language Models (LLMs) can analyze patient symptoms, retrieve trusted medical references and generate preliminary medical guidance within seconds.
 
-These capabilities create significant opportunities, but they also introduce serious security and safety risks.
+These capabilities offer significant benefits, but they also introduce serious security and safety risks.
 
 If an AI healthcare application is not properly secured, attackers may be able to steal sensitive patient records, manipulate model behavior, poison trusted medical knowledge sources or generate harmful medical advice.
 
 Because healthcare systems process highly sensitive Personal Health Information (PHI), security failures can affect both patient privacy and patient safety.
 
-This project demonstrates how to perform a complete threat modeling and risk assessment of an AI-powered healthcare application before it is deployed.
+This project demonstrates how a security team can assess an AI-powered healthcare application before it is developed and deployed.
 
-The fictional application analyzed in this repository is an AI Medical Assistant that allows patients to:
+In this scenario, a healthcare organization is planning to launch an AI Medical Assistant that will allow patients to:
 
 1. Submit symptoms and medical questions
 2. Retrieve trusted medical references using Retrieval-Augmented Generation (RAG)
 3. Receive AI-generated medical guidance
 4. Share summaries with authorized doctors
 
-Rather than building a functional application, this project focuses on the security assessment process itself.
+Before development begins, the security team is tasked with evaluating the proposed architecture, identifying the most significant risks and recommending the controls required to deploy the system safely.
 
-The objective is to answer a critical question:
+The objective of this assessment is to answer a critical question:
 
-> How can we systematically identify and mitigate the security risks of a high-risk AI healthcare application before deployment?
+> Can this AI Medical Assistant be deployed safely, and what security controls must be implemented before launch?
 
 ## Methodology
 
@@ -74,146 +74,161 @@ This repository contains a complete threat modeling and risk assessment package.
 
 ## Analysis Narrative
 
-This project follows the same logical process that security architects use when evaluating real-world systems.
+This project was approached as a realistic pre-deployment security assessment.
 
-The assessment begins by understanding how the AI Medical Assistant works. Architecture and design diagrams are used to visualize the system, the movement of sensitive data, the boundaries where trust changes and the sequence of events that occurs when a patient interacts with the application.
+A healthcare organization plans to develop an AI-powered Medical Assistant that will allow patients to submit symptoms, receive AI-generated medical guidance and optionally share summaries with authorized doctors.
 
-Once the system is clearly understood, the analysis identifies the assets that must be protected, the adversaries most likely to target those assets and the assumptions that define the security baseline.
+Before development begins, the security team is asked to answer the following question:
 
-Realistic abuse cases are then developed to illustrate how the application could be intentionally misused.
+> Can this system be deployed safely and what security controls must be implemented before launch?
 
-The STRIDE methodology is applied to systematically identify threats affecting each component.
+The first step was to understand how the proposed application would work in practice.
 
-The resulting findings are mapped to the OWASP Top 10 for LLM Applications and MITRE ATLAS to align the assessment with widely recognized AI security frameworks.
+Patients submit symptoms through a web interface. The application authenticates the user, retrieves trusted medical references from a knowledge base, sends the relevant context to a Large Language Model (LLM), validates the generated response and stores the results in a patient database. Patients may also choose to share summaries with authorized doctors.
 
-Each threat is then evaluated using a qualitative risk assessment based on likelihood and impact.
+To document this design and ensure that all stakeholders had a shared understanding of the system, four architectural diagrams were created.
 
-Finally, practical technical and procedural controls are proposed to reduce the most critical risks.
-
-## Architecture and Design Artifacts
-
-Understanding how the system works is the foundation of effective threat modeling. To build a complete picture of the AI Medical Assistant, four complementary diagrams were created.
-
-Each diagram focuses on a different aspect of the system.
-
-- The System Architecture Diagram shows the major components and how they are connected.
-- The Data Flow Diagram shows how sensitive information moves through the application.
-- The Trust Boundary Diagram highlights where trust changes and where additional security controls are required.
-- The Sequence Diagram illustrates what happens step by step when a patient submits symptoms and receives AI-generated guidance.
-
-Together, these diagrams provide the architectural foundation for all subsequent analysis.
-
-### [System Architecture Diagram](docs/architecture/system-architecture.md)
+The [System Architecture Diagram](docs/architecture/system-architecture.md) identifies all major components involved in the solution, including the Patient Web Interface, Authentication Service, API Gateway, LLM Orchestrator, Retrieval Engine, Medical Knowledge Base, External LLM Provider, Output Guardrails, Patient Database and Logging and Monitoring.
 
 ![System Architecture Diagram](diagrams/system-architecture.png)
 
-This diagram presents a high-level view of the AI Medical Assistant and identifies the core components involved in user interaction, authentication, AI processing, data storage and monitoring.
-
-### [Data Flow Diagram (DFD)](docs/architecture/data-flow-diagram.md)
+The [Data Flow Diagram (DFD)](docs/architecture/data-flow-diagram.md) traces how sensitive information such as Personal Health Information (PHI), prompts, retrieved documents and model outputs move between system components.
 
 ![Data Flow Diagram](diagrams/data-flow-diagram.png)
 
-This diagram traces how Personal Health Information (PHI), prompts, retrieved documents and model outputs move throughout the system.
-
-### [Trust Boundary Diagram](docs/architecture/trust-boundary-diagram.md)
+The [Trust Boundary Diagram](docs/architecture/trust-boundary-diagram.md) highlights where trust changes within the system such as when data enters from external users or when sensitive prompts are transmitted to a third-party LLM provider.
 
 ![Trust Boundary Diagram](diagrams/trust-boundary-diagram.png)
 
-This diagram highlights where trust levels change, such as when sensitive prompts are sent to the external LLM provider or when users access protected resources.
-
-### [Sequence Diagram](docs/architecture/sequence-diagram.md)
+The [Sequence Diagram](docs/architecture/sequence-diagram.md) illustrates the exact order of operations that occurs when a patient submits symptoms and receives AI-generated medical guidance.
 
 ![Sequence Diagram](diagrams/symptom-analysis-sequence.png)
 
-This diagram illustrates the chronological workflow of a patient request, from authentication and document retrieval to model inference, validation, storage and optional sharing with doctors.
+Once the system design was clearly defined, the [Asset Inventory](docs/asset-inventory.md) was created to determine what the organization must protect.
 
-## [Asset Inventory](docs/asset-inventory.md)
+### Critical Assets
 
-Before analyzing threats, it is essential to understand what needs to be protected.
+| Asset | Security Importance |
+|------|------|
+| Personal Health Information (PHI) | Contains highly sensitive medical data. |
+| Prompts | May include patient symptoms and confidential system instructions. |
+| Medical Knowledge Base | Must remain trustworthy to prevent harmful recommendations. |
+| API Keys | Provide access to external LLM services. |
+| Audit Logs | Support accountability and incident investigations. |
 
-This section identifies the most valuable assets in the AI Medical Assistant, including Personal Health Information (PHI), prompts, model outputs, API keys, authentication tokens and audit logs.
+This analysis showed that the most valuable assets include patient records, prompts, model outputs, authentication credentials, API keys and audit logs.
 
-Each asset is classified according to its security importance and the properties that must be preserved, such as confidentiality, integrity, availability and safety.
+The next step was to identify who might attempt to compromise these assets. The [Threat Actors](docs/threat-actors.md) section profiles realistic adversaries and explains their motivations.
 
-## [Threat Actors](docs/threat-actors.md)
+### Threat Actors
 
-Once the critical assets are identified, the next step is to determine who might attempt to compromise them.
+| Threat Actor | Primary Objective |
+|------|------|
+| Malicious Patient | Manipulate the model and bypass safeguards. |
+| External Attacker | Steal PHI and disrupt operations. |
+| Insider Threat | Abuse legitimate access to patient records. |
+| Supply Chain Adversary | Compromise dependencies and third-party components. |
+| Healthcare-Focused APT Group | Conduct espionage and ransomware attacks. |
 
-This section defines the adversaries most likely to target the system, including malicious patients, external attackers, insider threats, supply chain adversaries and healthcare-focused advanced persistent threat (APT) groups.
+This analysis demonstrated that the system may be targeted by both opportunistic attackers and sophisticated healthcare-focused threat groups.
 
-For each actor, the analysis explains typical motivations, capabilities and likely attack objectives.
+Before evaluating threats, the [Security Assumptions](docs/security-assumptions.md) section documented the controls that are assumed to be in place.
 
-## [Security Assumptions](docs/security-assumptions.md)
+### Security Assumptions
 
-Every threat model depends on a set of baseline assumptions.
+- Data in transit is protected using TLS.
+- Sensitive data is encrypted at rest.
+- Role-Based Access Control (RBAC) is enforced.
+- API keys are stored securely.
+- Audit logging and monitoring are enabled.
+- Output Guardrails validate model responses.
 
-This section documents the conditions assumed to be true during the assessment, such as the use of encryption, authentication, authorization, audit logging and secure secrets management.
+These assumptions define the baseline environment used throughout the assessment.
 
-If any of these assumptions are incorrect, the actual risk level may be significantly higher.
+The [Abuse Cases](docs/abuse-cases.md) section then explored how the application could be intentionally misused.
 
-## [Abuse Cases](docs/abuse-cases.md)
+### High-Impact Abuse Cases
 
-Abuse cases describe how the application could be intentionally misused.
+| Abuse Case | Potential Impact |
+|------|------|
+| Prompt Injection | Manipulates model behavior and reveals restricted information. |
+| Knowledge Base Poisoning | Introduces false medical information into responses. |
+| Sensitive Data Disclosure | Exposes PHI and confidential prompts. |
+| Credential Theft | Enables unauthorized access. |
+| Unsafe Output Generation | Produces harmful medical recommendations. |
 
-Rather than focusing on normal user behavior, this section models realistic attack scenarios such as prompt injection, knowledge base poisoning, credential theft and unsafe output generation.
+These scenarios translate attacker goals into realistic attack paths.
 
-These scenarios provide concrete examples of how threats may materialize in practice.
+To systematically identify threats affecting each component, the [STRIDE Threat Model](docs/stride-threat-model.md) was applied.
 
-## [STRIDE Threat Model](docs/stride-threat-model.md)
+### STRIDE Categories
 
-This section applies the STRIDE methodology to each major component of the system.
+| Category | Description |
+|------|------|
+| Spoofing | Impersonating users or services. |
+| Tampering | Modifying data, prompts or configurations. |
+| Repudiation | Denying actions due to insufficient logging. |
+| Information Disclosure | Exposing sensitive information. |
+| Denial of Service | Disrupting system availability. |
+| Elevation of Privilege | Gaining unauthorized permissions. |
 
-For every component, threats are categorized as Spoofing, Tampering, Repudiation, Information Disclosure, Denial of Service or Elevation of Privilege.
+This structured analysis ensured that no major threat category was overlooked.
 
-This structured approach ensures that both traditional web security risks and AI-specific threats are systematically identified.
+The identified threats were then mapped to the [OWASP Top 10 for LLM Applications](docs/owasp-llm-mapping.md) to align the findings with current industry guidance.
 
-## [OWASP Top 10 for LLM Applications Mapping](docs/owasp-llm-mapping.md)
+### Most Relevant OWASP Categories
 
-After identifying threats, this section maps them to the OWASP Top 10 for LLM Applications.
+| Category | Relevance |
+|------|------|
+| LLM01: Prompt Injection | Highest-priority AI-specific threat. |
+| LLM02: Insecure Output Handling | Harmful responses may reach patients. |
+| LLM03: Training Data Poisoning | Corrupted medical references may influence outputs. |
+| LLM06: Sensitive Information Disclosure | PHI and secrets may be exposed. |
+| LLM09: Overreliance | Users may trust inaccurate guidance. |
 
-This framework highlights the most important risks affecting systems built with Large Language Models, including Prompt Injection, Sensitive Information Disclosure and Overreliance.
+This mapping confirmed that the proposed application is exposed to nearly all major LLM security risks.
 
-Mapping findings to OWASP demonstrates that the assessment aligns with current industry best practices.
+The same threats were also mapped to [MITRE ATLAS](docs/mitre-atlas-mapping.md), which connects findings to real-world adversarial tactics and techniques targeting AI systems.
 
-## [MITRE ATLAS Mapping](docs/mitre-atlas-mapping.md)
+### Relevant MITRE ATLAS Techniques
 
-This section maps the identified threats to MITRE ATLAS, a framework that catalogs adversarial tactics and techniques targeting AI systems.
+| Threat Scenario | Technique |
+|------|------|
+| Prompt Injection | Prompt Injection |
+| Knowledge Base Poisoning | Data Poisoning |
+| Sensitive Data Exfiltration | Exfiltration via ML Inference API |
+| Credential Theft | Credential Access |
 
-It connects architectural findings to realistic attacker behaviors such as Prompt Injection, Data Poisoning and Exfiltration via ML Inference API.
+This step linked the assessment to realistic attacker behavior.
 
-## [Risk Assessment](docs/risk-assessment.md)
+The [Risk Assessment](docs/risk-assessment.md) section evaluated each threat using Likelihood and Impact to determine which issues should be prioritized.
 
-After identifying and categorizing threats, the next step is to determine which risks deserve immediate attention.
+### Highest-Priority Risks
 
-This section evaluates each threat using two factors:
+| Threat | Likelihood | Impact | Overall Risk |
+|------|------|------|------|
+| Prompt Injection | Critical | Critical | Critical |
+| Sensitive Data Disclosure | High | Critical | Critical |
+| Medical Knowledge Base Poisoning | High | Critical | Critical |
+| Unsafe Output Generation | High | Critical | Critical |
 
-- Likelihood
-- Impact
+The assessment concluded that the most severe risks are concentrated around model manipulation, privacy exposure and patient safety.
 
-The combination of these factors produces an overall risk rating such as Low, Medium, High or Critical.
+The [Security Controls and Mitigations](docs/mitigations.md) section translated these findings into actionable recommendations.
 
-Threats such as Prompt Injection, Sensitive Data Disclosure, Medical Knowledge Base Poisoning and Unsafe Output Generation are identified as the highest-priority risks because they could directly affect patient privacy and patient safety.
+### Recommended Controls
 
-## [Security Controls and Mitigations](docs/mitigations.md)
+| Threat | Recommended Control |
+|------|------|
+| Prompt Injection | Prompt isolation and output filtering |
+| Sensitive Data Disclosure | Data minimization and encryption |
+| Credential Theft | Multi-Factor Authentication (MFA) |
+| Unsafe Output Generation | Human review and medical disclaimers |
 
-This section proposes practical recommendations to reduce the identified risks.
+These controls represent the minimum safeguards recommended before the system is approved for production use.
 
-The mitigations include both technical controls and operational measures, such as prompt isolation, encryption, rate limiting, human review and incident response procedures.
+The [Executive Summary](docs/executive-summary.md) consolidates the most important findings for managers and decision-makers. It highlights the highest-priority risks, explains their business implications and summarizes the actions required before deployment.
 
-Each recommendation is directly linked to one or more high-priority threats.
+Finally, the [References](docs/references.md) section documents the standards and frameworks used throughout the assessment, including Microsoft STRIDE, the OWASP Top 10 for LLM Applications, MITRE ATLAS and the NIST AI Risk Management Framework.
 
-## [Executive Summary](docs/executive-summary.md)
-
-The Executive Summary provides a concise overview of the entire assessment.
-
-It highlights the most important risks, explains their business and security implications and summarizes the highest-priority recommendations.
-
-This section is intended for managers, executives and decision-makers who need a high-level understanding of the findings.
-
-## [References](docs/references.md)
-
-This section lists the standards, frameworks and authoritative resources used throughout the project.
-
-Examples include the OWASP Top 10 for LLM Applications, MITRE ATLAS, Microsoft STRIDE and the NIST AI Risk Management Framework.
-
-These references provide the theoretical foundation for the assessment and allow readers to explore each methodology in greater depth.
+This project demonstrates how a security team can evaluate a proposed AI healthcare application before development begins, identify its most significant risks and provide a clear roadmap for deploying the system safely.
