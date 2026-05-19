@@ -1,5 +1,7 @@
 # AI Medical Assistant Threat Modeling Case Study
 
+![AI Medical Assistant Threat Model Banner](diagrams/banner.png)
+
 ## Introduction
 
 Artificial Intelligence is rapidly transforming healthcare. Applications powered by Large Language Models (LLMs) can analyze patient symptoms, retrieve trusted medical references and generate preliminary medical guidance within seconds.
