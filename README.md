@@ -6,7 +6,7 @@
 
 Artificial Intelligence is rapidly transforming healthcare. Applications powered by Large Language Models (LLMs) can analyze patient symptoms, retrieve trusted medical references and generate preliminary medical guidance within seconds.
 
-These capabilities offer significant benefits, but they also introduce serious security and safety risks.
+These capabilities offer significant benefits but they also introduce serious security and safety risks.
 
 If an AI healthcare application is not properly secured, attackers may be able to steal sensitive patient records, manipulate model behavior, poison trusted medical knowledge sources or generate harmful medical advice.
 
@@ -25,7 +25,7 @@ Before development begins, the security team is tasked with evaluating the propo
 
 The objective of this assessment is to answer a critical question:
 
-> Can this AI Medical Assistant be deployed safely, and what security controls must be implemented before launch?
+> Can this AI Medical Assistant be deployed safely and what security controls must be implemented before launch?
 
 ## Methodology
 
